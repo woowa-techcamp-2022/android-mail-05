@@ -10,11 +10,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        tools:context=".ui.HomeActivity">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_container_main"
+            android:id="@+id/fragment_container_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:id="@+id/bottom_navigation_home"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_home" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
