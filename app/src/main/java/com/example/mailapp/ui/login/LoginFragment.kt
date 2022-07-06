@@ -28,6 +28,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
             }
         }
 
+        viewModel.isValidEmail.observe(viewLifecycleOwner) {
+            it?.let { isValidEmail ->
+                if (isValidEmail.not()) {
+                    binding.textInputLayoutEmail.error =
+                        getString(R.string.email_validation_error_msg)
+                } else {
+                    binding.textInputLayoutEmail.error = null
+                }
+            }
+        }
+
         binding.btnNext.setOnClickListener {
             navigateToMailFragment()
         }
