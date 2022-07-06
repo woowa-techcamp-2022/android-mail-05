@@ -24,6 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.HomeActivity"
+            android:theme="@style/Theme.MailApp.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
