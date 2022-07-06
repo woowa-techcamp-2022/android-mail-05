@@ -22,6 +22,12 @@ class LoginViewModel : ViewModel() {
         }
     }
 
+    val isNextBtnEnabled = isValidNickname.switchMap { isValidNickname ->
+        isValidEmail.map { isValidEmail ->
+            isValidNickname == true && isValidEmail == true
+        }
+    }
+
     private fun checkNicknameValidation(nickname: String): Boolean {
         val engPattern = Pattern.compile(".*[a-zA-Z].*")
         val numPattern = Pattern.compile(".*[0-9].*")
