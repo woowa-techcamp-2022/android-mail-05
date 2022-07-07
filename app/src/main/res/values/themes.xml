@@ -22,4 +22,9 @@
     <style name="Theme.MailApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MailApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeOverlay.AppCompat.navTheme">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorControlHighlight">@color/purple_200</item>
+    </style>
 </resources>

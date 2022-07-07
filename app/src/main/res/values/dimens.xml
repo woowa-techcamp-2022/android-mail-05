@@ -2,4 +2,8 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="medium_padding">16dp</dimen>
+
+    <dimen name="mail_item_img_size">40dp</dimen>
+
+    <dimen name="setting_img_size">100dp</dimen>
 </resources>
