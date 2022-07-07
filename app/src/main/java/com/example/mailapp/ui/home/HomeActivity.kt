@@ -16,11 +16,12 @@ import com.example.mailapp.ui.login.LoginActivity.Companion.NICKNAME
 import com.example.mailapp.ui.mail.MailFragment
 import com.example.mailapp.ui.mail.MailViewModel
 import com.example.mailapp.ui.setting.SettingFragment
+import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding: ActivityHomeBinding
     private val viewModel by viewModels<MailViewModel>()
 
@@ -40,9 +41,9 @@ class HomeActivity : AppCompatActivity() {
         )
 
         setUpActionBar()
-        setUpBottomNavigation()
-        setUpNavigationRail()
+        setUpListener()
         setUpNavigationView()
+        initSelectedItem()
     }
 
     private fun setUpActionBar() {
@@ -55,18 +56,14 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpBottomNavigation() {
-        binding.bottomNavigationHome?.setOnItemSelectedListener {
-            navigateToFragment(it.itemId)
-        }
-        binding.bottomNavigationHome?.selectedItemId = R.id.action_mail
+    private fun initSelectedItem(@IdRes itemId: Int = R.id.action_mail) {
+        binding.bottomNavigationHome?.selectedItemId = itemId
+        binding.navigationRailHome?.selectedItemId = itemId
     }
 
-    private fun setUpNavigationRail() {
-        binding.navigationRailHome?.setOnItemSelectedListener {
-            navigateToFragment(it.itemId)
-        }
-        binding.bottomNavigationHome?.selectedItemId = R.id.action_mail
+    private fun setUpListener() {
+        binding.bottomNavigationHome?.setOnItemSelectedListener(this)
+        binding.navigationRailHome?.setOnItemSelectedListener(this)
     }
 
     private fun setUpNavigationView() {
@@ -84,8 +81,7 @@ class HomeActivity : AppCompatActivity() {
         viewModel.selectedMailType.observe(this) {
             it?.let { t ->
                 binding.navigationViewHome.setCheckedItem(t.menuId)
-                binding.bottomNavigationHome?.selectedItemId = R.id.action_mail
-                binding.navigationRailHome?.selectedItemId = R.id.action_mail
+                initSelectedItem()
             }
         }
     }
@@ -96,11 +92,14 @@ class HomeActivity : AppCompatActivity() {
                 replace(R.id.fragment_container_home, MailFragment())
             }
             R.id.action_setting -> supportFragmentManager.commit {
-                viewModel.selectMailType(MailType.PRIMARY)
                 replace(R.id.fragment_container_home, SettingFragment(), SettingFragment.TAG)
             }
         }
         return true
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return navigateToFragment(item.itemId)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -134,16 +133,14 @@ class HomeActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
 
         val selectedItemId = savedInstanceState.getInt(SELECTED_ITEM_ID)
-        binding.bottomNavigationHome?.selectedItemId = selectedItemId
-        binding.navigationRailHome?.selectedItemId = selectedItemId
+        initSelectedItem(selectedItemId)
     }
 
     override fun onBackPressed() {
-
         val f = supportFragmentManager.findFragmentByTag(SettingFragment.TAG)
+
         if (f != null) {
-            binding.bottomNavigationHome?.selectedItemId = R.id.action_mail
-            binding.navigationRailHome?.selectedItemId = R.id.action_mail
+            initSelectedItem()
         } else {
             super.onBackPressed()
         }
