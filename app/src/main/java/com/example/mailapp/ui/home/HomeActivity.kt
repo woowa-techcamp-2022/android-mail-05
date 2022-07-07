@@ -96,8 +96,7 @@ class HomeActivity : AppCompatActivity() {
             }
             R.id.action_setting -> supportFragmentManager.commit {
                 viewModel.selectMailType(MailType.PRIMARY)
-                replace(R.id.fragment_container_home, SettingFragment())
-                addToBackStack(null)
+                replace(R.id.fragment_container_home, SettingFragment(), SettingFragment.TAG)
             }
         }
         return true
@@ -136,6 +135,16 @@ class HomeActivity : AppCompatActivity() {
         val selectedItemId = savedInstanceState.getInt(SELECTED_ITEM_ID)
         binding.bottomNavigationHome?.selectedItemId = selectedItemId
         binding.navigationRailHome?.selectedItemId = selectedItemId
+    }
+
+    override fun onBackPressed() {
+
+        val f = supportFragmentManager.findFragmentByTag(SettingFragment.TAG)
+        if (f != null) {
+            binding.bottomNavigationHome?.selectedItemId = R.id.action_mail
+        } else {
+            super.onBackPressed()
+        }
     }
 
     companion object {

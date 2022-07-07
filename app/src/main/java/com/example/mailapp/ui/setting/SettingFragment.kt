@@ -2,7 +2,6 @@ package com.example.mailapp.ui.setting
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import com.example.mailapp.R
 import com.example.mailapp.base.BaseFragment
 import com.example.mailapp.data.UserData
@@ -19,16 +18,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    parentFragmentManager.popBackStack()
-                }
-
-            }
-        )
-
         binding.userData = userData
+    }
+
+    companion object {
+        const val TAG = "SettingFragment"
     }
 }
