@@ -12,8 +12,8 @@ import kotlin.random.Random
 fun setSenderName(tv: MaterialTextView, senderName: String) {
     val engPattern = Pattern.compile(".*[a-zA-Z].*")
     val startStr = senderName[0].toString()
-    val color: Int = Color.argb(255, Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
 
+    val colorCode = String.format("#%06x", 0xFFFFFF and senderName.hashCode())
     if (engPattern.matcher(startStr).matches()) {
         tv.text = startStr
         tv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
@@ -21,5 +21,5 @@ fun setSenderName(tv: MaterialTextView, senderName: String) {
         tv.text = ""
         tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.person_icon, 0, 0, 0)
     }
-    tv.backgroundTintList = ColorStateList.valueOf(color)
+    tv.backgroundTintList = ColorStateList.valueOf(Color.parseColor(colorCode))
 }
