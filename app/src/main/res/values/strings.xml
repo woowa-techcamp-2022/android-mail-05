@@ -15,4 +15,10 @@
     <string name="nickname_hint">닉네임</string>
     <string name="email_validation_error_msg">이메일 형식에 맞게 입력해주세요</string>
     <string name="email_hint">이메일</string>
+
+    <string name="mail_title">Wmail</string>
+
+    <string name="action_primary">Primary</string>
+    <string name="action_social">Social</string>
+    <string name="action_promotions">Promotions</string>
 </resources>

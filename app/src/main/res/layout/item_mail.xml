@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mail"
+            type="com.example.mailapp.data.Mail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/medium_padding">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/iv_mail_profile"
+            senderName="@{mail.sender}"
+            android:layout_width="@dimen/mail_item_img_size"
+            android:layout_height="@dimen/mail_item_img_size"
+            android:background="@drawable/circle_background"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_mail_sender"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_padding"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{mail.sender}"
+            app:layout_constraintEnd_toStartOf="@id/tv_mail_date"
+            app:layout_constraintStart_toEndOf="@id/iv_mail_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Google" />
+
+        <TextView
+            android:id="@+id/tv_mail_title"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{mail.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_mail_sender"
+            app:layout_constraintTop_toBottomOf="@id/tv_mail_sender"
+            tools:text="보안 알림" />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{mail.content}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_mail_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_mail_title"
+            tools:text="보안 알림 메일입니다" />
+
+        <TextView
+            android:id="@+id/tv_mail_date"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{mail.date}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="22.01.01" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

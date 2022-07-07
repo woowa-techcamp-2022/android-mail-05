@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="@dimen/mail_item_img_size"
+        android:height="@dimen/mail_item_img_size"
+        android:drawable="@drawable/ic_baseline_person_24" />
+</layer-list>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_primary"
+            android:icon="@drawable/ic_baseline_star_24"
+            android:title="@string/action_primary"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_social"
+            android:icon="@drawable/ic_baseline_people_alt_24"
+            android:title="@string/action_social"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_promotions"
+            android:icon="@drawable/ic_baseline_label_24"
+            android:title="@string/action_promotions"
+            app:showAsAction="never" />
+    </group>
+</menu>
