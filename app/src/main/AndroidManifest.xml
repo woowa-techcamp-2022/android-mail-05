@@ -30,7 +30,6 @@
             android:name=".ui.home.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.MailApp.NoActionBar">
-
         </activity>
     </application>
 

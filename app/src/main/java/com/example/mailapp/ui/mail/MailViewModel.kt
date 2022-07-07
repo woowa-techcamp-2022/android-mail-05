@@ -1,26 +1,24 @@
 package com.example.mailapp.ui.mail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
-import com.example.mailapp.data.Mail
+import androidx.lifecycle.*
 import com.example.mailapp.data.MailType
-import com.example.mailapp.data.getFakeMailData
+import com.example.mailapp.data.source.MailRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MailViewModel : ViewModel() {
+@HiltViewModel
+class MailViewModel @Inject constructor(
+    private val mailRepository: MailRepository
+) : ViewModel() {
     private val _selectedMailType: MutableLiveData<MailType> = MutableLiveData(MailType.PRIMARY)
     val selectedMailType: LiveData<MailType> get() = _selectedMailType
 
-    private val _mail: MutableLiveData<List<Mail>> = MutableLiveData()
-    val mail: LiveData<List<Mail>> get() = _mail
+    val mail = mailRepository.mailList.asLiveData()
 
-    val filteredMail = selectedMailType.map { type ->
-        _mail.value?.filter { it.type == type }
-    }
-
-    init {
-        _mail.value = getFakeMailData()
+    val filteredMail = selectedMailType.switchMap { type ->
+        mail.map {
+            it.filter { m -> m.type == type }
+        }
     }
 
     fun selectMailType(type: MailType) {
