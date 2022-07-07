@@ -85,6 +85,7 @@ class HomeActivity : AppCompatActivity() {
             it?.let { t ->
                 binding.navigationViewHome.setCheckedItem(t.menuId)
                 binding.bottomNavigationHome?.selectedItemId = R.id.action_mail
+                binding.navigationRailHome?.selectedItemId = R.id.action_mail
             }
         }
     }
@@ -142,6 +143,7 @@ class HomeActivity : AppCompatActivity() {
         val f = supportFragmentManager.findFragmentByTag(SettingFragment.TAG)
         if (f != null) {
             binding.bottomNavigationHome?.selectedItemId = R.id.action_mail
+            binding.navigationRailHome?.selectedItemId = R.id.action_mail
         } else {
             super.onBackPressed()
         }
